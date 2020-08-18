@@ -1,22 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragment :: head"></head>
+<head th:replace="fragment :: head">
+    <script src="resources/static/script.js"></script>
+</head>
 <body class="container">
-
-<h1>Create Event</h1>
 
 <nav th:replace="fragment :: navigation"></nav>
 
+<h1>Create Event</h1>
+
 <form method = 'post' action = '/events/create'>
+
     <div class="form-group">
-        <label for="eventName">Event Name:</label>
-        <input type="text" id="eventName" name="eventName" class="form=control">
+        <label for="eventName">Event Name</label>
+        <input type="text" id="eventName" class="form-control" name="eventName">
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="eventDate">Date</label>
+            <input type="date" class="form-control" id="eventDate" name="eventDate" >
+        </div>
+        <div class="col">
+            <label for="eventTime">Time</label>
+            <input placeholder="Selected time" type="text" id="eventTime" class="form-control timepicker">
+        </div>
     </div>
     <br>
+
     <div class="form-group">
-        <label for="eventDate">Date:</label>
-        <input type="date" id="eventDate" name="eventDate" >
+        <label for="eventDescription">Event Description</label>
+        <textarea class="form-control" id="eventDescription" rows="3"></textarea>
     </div>
+    <div class="row">
+        <div class="col">
+            <label for="wineOne">Wine One</label>
+            <textarea class="form-control" id="wineOne" rows="3"></textarea>
+        </div>
+        <div class="col">
+            <label for="wineTwo">Wine Two</label>
+            <textarea class="form-control" id="wineTwo" rows="3"></textarea>
+        </div>
+        <div class="col">
+            <label for="wineThree">Wine Three</label>
+            <textarea class="form-control" id="wineThree" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="chooseParticipants">Participants</label>
+        <select id="chooseParticipants" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+        </select>
+    </div>
+
     <br>
     <div class="form-group">
         <input type = 'submit' value = 'Create Event' class="btn btn-success">

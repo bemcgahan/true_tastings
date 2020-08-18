@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragment :: head">
+
+</head>
+<body class="container">
+<nav th:replace="fragment :: navigation"></nav>
+
+<h1>Tasting Notes</h1>
+
+        <form method = 'post' action = '/events/tasting-notes'>
+
+            <div class="form-group">
+                <label for="wineOneDescription">Description</label>
+                <textarea class="form-control" id="wineOneDescription" rows="3"></textarea>
+            </div>
+
+        </form>
+
+
+
+</body>
+</html>

@@ -5,14 +5,24 @@
     <title>True Tastings</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
+<div th:fragment = "jumbotron" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">True Tastings</h1>
+        <p class="lead">Come up with a cool line.</p>
+    </div>
+</div>
 
-<nav th:fragment = "navigation">
+<nav th:fragment = "navigation" class="navbar navbar-light" style="background-color: #e3f2fd;">
     <ul class="nav">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/events">Events</a></li>
-        <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>
+        <li class="nav-item"><a class="navbar-brand" href="/">Home</a></li>
+        <li class="nav-item"><a class="navbar-brand" href="/how-to">How-To</a></li>
+        <li class="nav-item"><a class="navbar-brand" href="/past-events">Past Events</a></li>
+        <li class="nav-item"><a class="navbar-brand" href="/events/create">Create</a></li>
+        <li class="nav-item"><a class="navbar-brand" href="/my-wines">My Wines</a></li>
     </ul>
 </nav>
 
