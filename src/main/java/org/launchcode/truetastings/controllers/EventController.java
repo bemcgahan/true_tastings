@@ -1,47 +1,65 @@
 package org.launchcode.truetastings.controllers;
 
-
+import org.hibernate.event.spi.EventType;
+import org.launchcode.truetastings.data.EventRepository;
+import org.launchcode.truetastings.models.Event;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
-@RequestMapping(value="events")
+@RequestMapping
 //holds methods to handle http requests
 public class EventController {
 
-    private static List<String> events = new ArrayList<>();
+    @Autowired
+    private EventRepository eventRepository;
+
+
 
     @GetMapping
     public String displayEvents(Model model){
-        model.addAttribute("events", events);
-        return "events/index";
+        model.addAttribute("title", "All Events");
+        model.addAttribute("events", eventRepository.findAll());
+        return "index";
     }
 
 
-//    //handles requests of the form /events/launchcode
-//    @GetMapping("{event}")
-//    @ResponseBody
-//    public String eventWithPathParam(@PathVariable String event){
-//        return "hello, " + event;
-//    }
+    @GetMapping("create-event")
+    public String createEventForm(Model model){
+        model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
+        model.addAttribute("types", EventType.values());
 
-    // /events/create
-    @GetMapping("create")
-    public String createEventForm(){
         return "events/createEventForm";
     }
 
     //handles form submission
-    @PostMapping("create")
-    public String createEvent(@RequestParam String eventName){
-        events.add(eventName);
-        return "redirect:"; //instructs browser to go to a different page
+    @PostMapping("create-event")
+    public String createEvent(@ModelAttribute Event newEvent){
+        eventRepository.save(newEvent);
+        return "redirect:/"; //instructs browser to go to a different page
     }
 
+    @GetMapping("delete-event")
+    public String displayDeleteEventForm(Model model){
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("events", eventRepository.findAll());
+        return "events/deleteEvent";
+    }
+
+
+    @PostMapping("delete-event")
+    public String deleteEvent(@RequestParam(required = false) int[] eventIds) {
+        if (eventIds != null) {
+            for (int id : eventIds) {
+                eventRepository.deleteById(id);
+            }
+        }
+        return "redirect:/"; //instructs browser to go to a different page
+    }
 
 }

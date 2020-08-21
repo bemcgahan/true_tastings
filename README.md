@@ -1,3 +1,5 @@
+## True Tastings
+
 True Tastings is a web application that facilitates wine tastings with friends and family. Users will be able 
 to create an event and choose three different wines to taste. On the event page, each wine selection will be 
 accompanied by a form to record tasting notes and final rankings. After the event forms are submitted, the average
